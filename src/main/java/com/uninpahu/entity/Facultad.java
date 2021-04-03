@@ -3,8 +3,6 @@ package com.uninpahu.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,21 +17,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Departamento implements Serializable {
+public class Facultad implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int departamentoId;
-	@Column(name = "nombre")
-	private String nombre;
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	private int facultadId;
+	private String nombreFacultad;
+	private String descripcion;
+	@OneToMany
+	@JoinColumn(name = "idFacultad", referencedColumnName = "facultadId")
 	@JsonManagedReference
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn(name = "idDepartamento", referencedColumnName = "departamentoId")
-	private List<Ciudad> ciudad;
+	private List<ProgramaAcademico> programaAcademico;
 }

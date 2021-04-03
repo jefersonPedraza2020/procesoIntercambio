@@ -21,26 +21,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Ciudad implements Serializable{
-	/**
-	 * 
-	 */
+public class ProgramaAcademico implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ciudadId;
-	private String nombre;
-
+	private int programaAcademicoId;
+	private String nombrePrograma;
+	private String duracion;
+	private String snies;
+	private String resolucion;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "idDepartamento")
+	@JoinColumn(name = "idFacultad")
 	@JsonBackReference
-	private Departamento departamento;
-	
+	private Facultad facultad;
 	@JsonManagedReference
 	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn(name = "idCiudad", referencedColumnName = "ciudadId")
-	private List<Usuario> usuario;
+	@JoinColumn(name = "idProgramaAcademico", referencedColumnName = "programaAcademicoId")
+	private List<Estudiante> estudiante;
 }

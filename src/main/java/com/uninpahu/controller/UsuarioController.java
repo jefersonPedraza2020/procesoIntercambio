@@ -11,36 +11,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uninpahu.entity.Ciudad;
-import com.uninpahu.service.CiudadService;
+import com.uninpahu.entity.Usuario;
+import com.uninpahu.service.UsuarioService;
 
 @RestController
-@RequestMapping("/ciudad")
-public class ciudadController {
+@RequestMapping("/usuario")
+public class UsuarioController {
+
 
 	@Autowired
-	private CiudadService ciudadService; 
+	private UsuarioService usuarioService; 
 	
 	@GetMapping
-	public List<Ciudad> traerTodo(){
-		return ciudadService.traerTodo();
+	public List<Usuario> traerTodo(){
+		return usuarioService.traerTodo();
 	}
 	
 	@GetMapping("/{id}")
-	public Ciudad traerPorId(@PathVariable int id) {
-		return ciudadService.traerPorId(id);
+	public Usuario traerPorId(@PathVariable int id) {
+		return usuarioService.traerPorId(id);
 	}
 	
 	@PostMapping
-	public Ciudad agregar(Ciudad ciudad) {
-		return ciudadService.agregarOActualizar(ciudad);
+	public Usuario agregar(Usuario usuario) {
+		return usuarioService.agregarOActualizar(usuario);
 	}
 	
 	@PutMapping("/{id}")
-	public Ciudad actualizar(@PathVariable int id,@RequestBody Ciudad ciudad) {
-		ciudad.setCiudadId(id);
-		return ciudadService.agregarOActualizar(ciudad);
+	public Usuario actualizar(@PathVariable int id,@RequestBody Usuario usuario) {
+		usuario.setUsuarioId(id);
+		return usuarioService.agregarOActualizar(usuario);
 	}
 	
+
 
 }
